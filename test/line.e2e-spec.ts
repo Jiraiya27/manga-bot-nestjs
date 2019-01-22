@@ -40,13 +40,11 @@ describe('LineController (e2e)', () => {
     });
 
     it('Should fail with incorrect signature', () => {
-      return (
-        request(app.getHttpServer())
-          .post('/line/webhook')
-          .set('x-line-signature', 'random_signature')
-          .send(body)
-          .expect(500)
-      );
+      return request(app.getHttpServer())
+        .post('/line/webhook')
+        .set('x-line-signature', 'random_signature')
+        .send(body)
+        .expect(500);
     });
 
     it('Should pass with correct signature', () => {
@@ -65,7 +63,7 @@ describe('LineController (e2e)', () => {
     it('Validation should not affect other routes', () => {
       request(app.getHttpServer())
         .get('/')
-        .expect(200)
+        .expect(200);
     });
   });
 });
