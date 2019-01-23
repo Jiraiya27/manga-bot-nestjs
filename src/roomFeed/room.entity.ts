@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, OneToMany } from 'typeorm';
+import { RoomFeeds } from './roomFeeds.entity';
 
 @Entity()
 export class Room {
@@ -10,4 +11,7 @@ export class Room {
 
   @Column({ type: 'text', nullable: true })
   lastPostbackString: string;
+
+  @OneToMany(type => RoomFeeds, roomFeeds => roomFeeds.room)
+  roomFeeds: RoomFeeds[];
 }

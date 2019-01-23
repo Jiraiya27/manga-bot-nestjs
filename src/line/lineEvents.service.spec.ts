@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
 import { LineModule } from './line.module';
-import { Room } from '../room/room.entity';
+import { Room } from '../roomFeed/room.entity';
 import { LineEventsService } from './lineEvents.service';
 import { Repository } from 'typeorm';
 import { FollowEvent, ReplyableEvent, UnfollowEvent, JoinEvent, LeaveEvent } from '@line/bot-sdk';
@@ -29,7 +29,7 @@ describe('LineEventsService', () => {
   });
 
   beforeEach(async () => {
-    await roomRepository.clear();
+    await roomRepository.query('TRUNCATE TABLE "room" CASCADE;');
   });
 
   describe('handleFollow', () => {

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Room } from '../room/room.entity';
+import { Room } from '../roomFeed/room.entity';
 import { Repository } from 'typeorm';
 import { FollowEvent, UnfollowEvent, JoinEvent, LeaveEvent, EventBase } from '@line/bot-sdk';
 import { LineSDKService } from './lineSDK.service';
