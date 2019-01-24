@@ -19,7 +19,7 @@ export class Feed {
   @Column({ type: 'boolean', default: false })
   global: boolean;
 
-  @Column({ type: 'timestamptz' })
+  @Column({ type: 'timestamptz', default: new Date() })
   lastUpdated: Date;
 
   @Column({ type: 'json', nullable: true })
