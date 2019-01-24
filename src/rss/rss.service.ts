@@ -20,6 +20,7 @@ export class RssService {
     } catch (error) {
       throw new Error(`Could not parse ${url} as a rss feed.`);
     }
+
     return rssFeed;
   }
 }

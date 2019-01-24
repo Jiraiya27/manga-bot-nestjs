@@ -33,5 +33,13 @@ describe('RssService', () => {
       }
       expect(e.message).toMatch(/Could not parse/);
     });
+
+    it('Should return the same "feedUrl" in response regardless of trailing slash', async () => {
+      const url = 'https://readms.net/rss';
+      const resultWithoutSlash = await rssService.parseUrl(url);
+      const resultWithSlash = await rssService.parseUrl(`${url}/`);
+      expect(resultWithoutSlash.feedUrl).toBeTruthy();
+      expect(resultWithoutSlash.feedUrl).toBe(resultWithSlash.feedUrl);
+    });
   });
 });
