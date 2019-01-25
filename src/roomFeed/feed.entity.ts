@@ -4,8 +4,8 @@ import { RoomFeeds } from './roomFeeds.entity';
 
 @Entity()
 export class Feed {
-  @PrimaryGeneratedColumn()
-  id: string;
+  @PrimaryGeneratedColumn({ type: 'int' })
+  id: number;
 
   @Column({ type: 'text' })
   source: string;

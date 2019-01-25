@@ -12,8 +12,8 @@ export class RoomFeeds {
   })
   room: Room;
 
-  @PrimaryColumn({ type: 'text' })
-  feedId: string;
+  @PrimaryColumn({ type: 'int' })
+  feedId: number;
   @ManyToOne(type => Feed, feed => feed.roomFeeds, {
     primary: true,
     onDelete: 'CASCADE',
