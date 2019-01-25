@@ -14,14 +14,6 @@ describe('FeedRepository', () => {
   beforeAll(async () => {
     const app = await Test.createTestingModule({
       imports: [DBModule, RoomFeedModule],
-      // Need this workaround for custom repository
-      // https://github.com/nestjs/nest/issues/1229#issuecomment-432840300
-      providers: [
-        {
-          provide: 'RoomFeedsRepositoryRepository',
-          useClass: RoomFeedsRepository,
-        },
-      ],
     }).compile();
 
     roomFeedsRepository = app.get('RoomFeedsRepositoryRepository');
