@@ -22,7 +22,7 @@ describe('FeedRepository', () => {
     feedRepository = app.get('FeedRepositoryRepository');
   });
 
-  beforeEach(async () => {
+  afterEach(async () => {
     await feedRepository.query('TRUNCATE TABLE "feed" CASCADE');
   });
 
