@@ -9,6 +9,7 @@ export class RoomFeeds {
   @ManyToOne(type => Room, room => room.roomFeeds, {
     primary: true,
     onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
   })
   room: Room;
 
@@ -17,6 +18,7 @@ export class RoomFeeds {
   @ManyToOne(type => Feed, feed => feed.roomFeeds, {
     primary: true,
     onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
   })
   feed: Feed;
 
