@@ -85,4 +85,31 @@ export class CommandsService {
     roomFeedsDto.roomId = chatId;
     await this.roomFeedsRepository.save(roomFeedsDto);
   }
+
+  async addSourceFromGlobal(chatId: string, title: string, filters: string[] = []) {
+    const normalizedTitle = title.toLocaleLowerCase().trim();
+    if (!title) {
+      throw new Error('Title cannot be empty');
+    }
+
+    if (!Array.isArray(filters)) {
+      throw new Error('Filters must be an array');
+    }
+
+    const feed = await this.feedRepository.findOne({ where: { title: normalizedTitle, global: true }});
+    if (!feed) {
+      throw new Error(`Global feed '${normalizedTitle}' not found`);
+    }
+
+    const roomFeed = await this.roomFeedsRepository.findOne({ where: { feedId: feed.id, roomId: chatId }});
+    if (roomFeed) {
+      throw new Error(`This room is already subscribed to ${title}`);
+    }
+
+    const roomFeedsDto = this.roomFeedsRepository.create();
+    roomFeedsDto.feedId = feed.id;
+    roomFeedsDto.roomId = chatId;
+    roomFeedsDto.filters = filters;
+    await this.roomFeedsRepository.save(roomFeedsDto);
+  }
 }
